@@ -1,6 +1,8 @@
 var express = require("express");
 var multer = require('multer');
+var cors = require('cors');
 var app = express();
+app.use(cors());
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -13,8 +15,12 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage}).single('attachment');
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/index.html");
+    // res.sendFile(__dirname + "/index.html");
+
+    res.send("Hello world");
 });
+
+
 
 app.post('/api/upload', function (req, res) {
     console.log("req recieved");
